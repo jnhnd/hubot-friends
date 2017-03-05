@@ -1,9 +1,9 @@
 # Description:
-#   Hello World test
+#   Hello test
 #
 # Commands:
-#   friends Hello World - Reply with <Welcome to Underground!>
+#   Hello
 
 module.exports = (robot) ->
-    robot.respond /hello world$/i, (msg) ->
+    robot.hear /hello/i, (msg) ->
         msg.send "わーい！すごーい！"
