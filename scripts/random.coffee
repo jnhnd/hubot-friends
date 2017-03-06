@@ -1,6 +1,7 @@
 # Description:
-# Commands:
 #   特定のワードに反応する
+# Commands:
+#   matsuya / gatya
 childProcess = require 'child_process'
 
 module.exports = (robot) ->
