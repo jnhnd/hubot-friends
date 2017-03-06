@@ -13,11 +13,15 @@ module.exports = (robot) ->
         obj = JSON.parse(fs.readFileSync('scripts/etc/api.json', 'utf-8'))
         key = obj.hotpepper.key
         keyword = msg.match[2]
-        query = encodeURI("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{key}&keyword=#{keyword}&order=4&count=30&format=json")
+        query = encodeURI("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?kaey=#{key}&keyword=#{keyword}&order=4&count=30&format=json")
         request.get(query, (error, response, body) ->
-            if error or response.statusCode != 200
-                return msg.send('お店検索に失敗しちゃったよ！')
             data = JSON.parse(body)
+            if 'error' of data.results
+                return msg.send """
+                                お店検索に失敗しちゃったよ！
+                                code: #{data.results.error[0].code}
+                                message: #{data.results.error[0].message}
+                                """
             idx = Math.floor(data.results.shop.length * Math.random())
             msg.send """
                      あなたはお店を探すのが苦手なフレンズなんだね！
