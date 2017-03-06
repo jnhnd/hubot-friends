@@ -18,13 +18,12 @@ module.exports = (robot) ->
             data = JSON.parse(body)
             if 'error' of data.results
                 return msg.send """
-                                お店検索に失敗しちゃったよ！
+                                失敗しちゃった！
                                 code: #{data.results.error[0].code}
                                 message: #{data.results.error[0].message}
                                 """
             idx = Math.floor(data.results.shop.length * Math.random())
             msg.send """
                      あなたはお店を探すのが苦手なフレンズなんだね！
-                     このお店はどうかなー？
                      #{data.results.shop[idx].urls.pc}
                      """)
