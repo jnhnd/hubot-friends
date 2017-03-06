@@ -13,7 +13,7 @@ module.exports = (robot) ->
         obj = JSON.parse(fs.readFileSync('scripts/etc/api.json', 'utf-8'))
         key = obj.hotpepper.key
         keyword = msg.match[2]
-        query = encodeURI("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?kaey=#{key}&keyword=#{keyword}&order=4&count=30&format=json")
+        query = encodeURI("https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{key}&keyword=#{keyword}&order=4&count=30&format=json")
         request.get(query, (error, response, body) ->
             data = JSON.parse(body)
             if 'error' of data.results
